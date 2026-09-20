@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vitamin Bs 🎓</title>
+
+  <!-- Google Fonts: Caveat (Cursive) + Nunito (Clean, readable text) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Translucent card background so the photo remains visible */
+      --card-bg: rgba(15, 23, 42, 0.72);
+      --card-border: rgba(255, 255, 255, 0.22);
+      --accent: #38bdf8;
+      --text: #ffffff;
+      --muted: #cbd5e1;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem 1rem;
+      background-color: #0f172a;
+
+      /* Lighter overlay so the photo is vibrant and visible */
+      background-image: linear-gradient(rgba(15, 23, 42, 0.38), rgba(15, 23, 42, 0.58)),
+                        url('IMG_20260920_131448_333.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 580px;
+    }
+
+    /* Glassmorphism Card */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 2.25rem 1.75rem;
+      box-shadow: 0 16px 35px rgba(0, 0, 0, 0.35);
+      animation: fadeIn 0.6s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.35rem 0.85rem;
+      background: rgba(56, 189, 248, 0.18);
+      color: var(--accent);
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Cursive font for headers and greetings */
+    .cursive-title {
+      font-family: 'Caveat', cursive;
+      font-size: 2.45rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.25;
+      margin-bottom: 1.25rem;
+    }
+
+    .cursive-title .highlight {
+      color: var(--accent);
+    }
+
+    .cursive-greeting {
+      font-family: 'Caveat', cursive;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+    }
+
+    .letter-body {
+      color: #f1f5f9;
+      font-size: 1rem;
+      line-height: 1.85;
+      white-space: pre-line;
+      margin-bottom: 1.75rem;
+    }
+
+    .sign-off {
+      font-family: 'Caveat', cursive;
+      font-size: 1.9rem;
+      color: var(--accent);
+      text-align: right;
+      margin-top: 1.25rem;
+    }
+
+    /* Secret unlock box at the bottom */
+    .unlock-box {
+      border-top: 1px solid var(--card-border);
+      padding-top: 1.5rem;
+      text-align: center;
+    }
+
+    .unlock-box p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 0.85rem;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    input[type="text"] {
+      flex: 1;
+      padding: 0.85rem 1rem;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      background: rgba(15, 23, 42, 0.7);
+      color: var(--text);
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input[type="text"]:focus {
+      border-color: var(--accent);
+    }
+
+    button.primary-btn {
+      padding: 0.85rem 1.25rem;
+      background: var(--accent);
+      color: #04121e;
+      border: none;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+
+    button.primary-btn:active {
+      opacity: 0.85;
+    }
+
+    .error {
+      color: #f87171;
+      font-size: 0.85rem;
+      margin-top: 0.75rem;
+      display: none;
+    }
+
+    /* Private letter card starts hidden */
+    #private-card {
+      display: none;
+    }
+
+    .back-btn {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--card-border);
+      font-size: 0.85rem;
+      padding: 0.5rem 1.1rem;
+      margin-top: 1.5rem;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- 1. HOMEPAGE: Shared Message + Bottom Passcode Box -->
+    <div class="card" id="home-card">
+      <div class="badge">Class of 2026 🎓</div>
+      <h1 class="cursive-title">To my <span class="highlight">Vitamin Bs</span></h1>
+      
+      <div class="letter-body">
+Truly no words can express how much I value each and every one of you. I am thankful that I met each one of you in a part of my life that I needed all of you the most. Who would have thought that I would be best friends with Sophia, the prettiest (as they say) girl in the room. Who would have thought that I would be best friends with Tina, the smartest person in the room. And who would have thought that I would be best friends with Lawrence, the most good-looking guy in the room. Each one of you brought out the best in me. You guys inspired me to be a better person. Everything that I have become and everything I have achieved in these 4 years, I owe them all to you guys.
+
+In these toughest times of my life, even if we see each other far less, I feel comforted even by just the idea that you are still my friends. Maybe even now more than ever, I truly feel how important this group is to me. Everything around me is changing so fast and it's all happening at the same time. I hope that this part of my life, this group, will never change. I know I joke about it, but I will never forget my friends. Especially not the 3 of you and our experiences these past 4 years, that even for a brief moment, I felt complete and happy. If I do grow old, I will never forget these past 4 years because these were the years where I had the happiest days of my life and most of them are because you 3 were there.
+
+You guys have been with me through my ups and my very down downs, and I am always willing to give up my time to be there throughout all of your ups and downs. If you ever need me, you all know where to find me. I may not be the best at showing it, but I truly care for each one of you here. Thank you all for taking care of me.
+
+This website will (probably) be here forever as a mark of our journey and all the memories we made on the way. I know by this point you guys know that I wasn't really close with my family, but with the 3 of you I have found my true family. A place where I feel comfortable and I feel appreciated for who I truly am. Thank you so much for making me a part of this friend group.
+
+I hope each and every one of you success in life (which atp is a guarantee). I want to see all of you live the life that you have been dreaming to have. I truly love you all.
+      </div>
+
+      <div class="sign-off">— Mik</div>
+
+      <!-- Secret code input at bottom -->
+      <div class="unlock-box">
+        <p>🔒 Enter your secret passcode to read your personal letter:</p>
+        <div class="input-row">
+          <input type="text" id="passcode-input" placeholder="Enter your passcode..." autocomplete="off" />
+          <button class="primary-btn" onclick="unlockPersonalLetter()">Open</button>
+        </div>
+        <div class="error" id="error-msg">Incorrect passcode. Try again!</div>
+      </div>
+    </div>
+
+    <!-- 2. PERSONAL LETTER CARD (Appears on valid unlock) -->
+    <div class="card" id="private-card">
+      <div class="badge">Personal Note ✉️</div>
+      <h1 class="cursive-greeting" id="friend-heading"></h1>
+      <div class="letter-body" id="friend-message"></div>
+      <div class="sign-off" id="friend-signoff"></div>
+
+      <button class="back-btn" onclick="goBackHome()">← Back to Group Message</button>
+    </div>
+
+  </div>
+
+  <script>
+    const privateLetters = {
+      "fifi": {
+        heading: "Hi Sophia,",
+        signoff: "— bestie",
+        text: `yours is the hardest one i had to write because i'm going to be very vulnerable on this one. i'm gonna say things i never had the guts to say f2f. i want to thank all the forces of nature and destiny that brought me to meet you. you may not realize this, but most of who i am now and how i changed in these 4 years is because of you. you made me take care of myself more, do proper skincare, and to be more patient. you thought me most of what i should expect from the real world that first year me probably did not know about. you along with tina really did make me want to work harder and bring out the best version of me that i can do. thank you for taking me into this group that i would have never imagined to be in the first place. i will always remember the days where i used to take you to tric home even late at night even i if i had to walk so much to get home after. it was huge part of my daily routine back then. thank you for making me a better person in general.
+
+for the past few weeks i have felt so alone and until now to be honest, i feel so lost. i'm so overwhelmed that everything is changing and at the same time. i feel like the world crashed down on me. for the first time in a very long time i no longer know where i'm supposed to go and what i'm supposed to be doing. i want to be thankful that i'm graduating but everytime i try to sleep at night all the sadness and heartbreak just surges. i'm saying this not to worry you but for you to remember that you have helped me so much to get back on my feet when i eventually do so.
+
+we may fight and argue a lot, but your presence is very comforting to me. i don't have to hide anything about me when i'm with you and even when we don't talk, your presence makes me feel less alone. thank you for never getting tired of me and putting up with me even if we're very different people in a lot of ways. i want to become genuinely happy in life again. since you probably won't see much of me, i want you to know that i will be fine eventually. i'm telling you this because i know you're the only one who probably understands what i really feel. i'm trying to hold it together even right now while writing this because life has to always move on. i hope that one day you will also feel genuinely happy in life, if you're not right now lol.
+
+all i can really say to you is thank you for everything. our friendship really means so much to me even if i may not be the best at showing it. i feel thankful that i have someone to talk to about my true feelings that i can't even tell my own family. and definitely thankful to you for accepting and appreciating the truest version of me.
+
+i hope you succeed more than you already have, and i hope that your life will only get better from here. i will always wish you the best in life and always please take care of yourself.`
+      },
+
+      "tinababes": {
+        heading: "Hi, Tina",
+        signoff: "— mik",
+        text: `first off i want to thank you that even if you didn't know, that i considered you as my academic rival and that pushed me so much to be better. i worked hard not because i wanted to beat you but because i wanted to be at your level. in a way you served as my inspiration to work harder than i ever did before. you made me realize my potential. i offer my magna cum laude to you. thank you for being a friend who understands me. thank you that i can rely on you always and you protect me in rooms that i'm not in. when i eventually get back on my feet, i want you to know that you have helped me so much even in these darkest times of my life.
+
+i hope that one day you finally find peace in your heart and in your life. i hope that one day you will enjoy the life that you deserve. i hope that one day i will finally see you smile because you are genuinely happy in life. after everything you have been through these past months, you will have your turn and i hope that time comes soon enough. despite everything you have experienced, you have been so resilient and unwavering. i admire you for trying to be positive always.
+
+you will get that job soon. never lose confidence in who you are and what you can do. you are so much better than everyone else out there. never settle for less than you deserve. you have worked your ass off to this day and one day you will get the life that was truly meant for you.
+
+also as you're reading i probably already have accepted you friend request.`
+      },
+
+      "renren": {
+        heading: "Hi Lawrence,",
+        signoff: "— mik",
+        text: `first off, thank you so much for our friendship. thank you for being a friend that i can trust and rely on to protect me and make me feel validated. thank you for being so understanding and being a great listener. thank you for valuing and loving your friendships. thank you for taking me into our group and that your trust in me that i can be a part of it. in these hardest past few weeks of my life, thank you for lending an ear and for understanding me.
+
+despite being the youngest in our group, i look up to you in many ways. i wish i had the courage, like you did, to start to venture life in such an early age. i love how you became so independent at such a young age. i admire and respect you for being a person who can take care of himself. i admire your courage to explore the world and your bravery to do things i would not have done myself.
+
+i will forever root for you and your dreams. I hope you never stop being the free spirit that you are. i hope you never stop to be independent and caring. i hope you never stop being who you are right now. i hope to see you one day doing the things you love and living the life that you worked hard to create. you always look so happy even if you were probably stressed at work and life in general. more good things are on your way because you deserve all of it.
+
+i wish the best to you, your family, and your other friends because i know that you care for them.`
+      }
+    };
+
+    function unlockPersonalLetter() {
+      const input = document.getElementById("passcode-input").value.trim().toLowerCase();
+      const errorMsg = document.getElementById("error-msg");
+
+      if (privateLetters[input]) {
+        errorMsg.style.display = "none";
+        document.getElementById("home-card").style.display = "none";
+        document.getElementById("private-card").style.display = "block";
+
+        document.getElementById("friend-heading").innerText = privateLetters[input].heading;
+        document.getElementById("friend-message").innerText = privateLetters[input].text;
+        document.getElementById("friend-signoff").innerText = privateLetters[input].signoff;
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        errorMsg.style.display = "block";
+      }
+    }
+
+    function goBackHome() {
+      document.getElementById("private-card").style.display = "none";
+      document.getElementById("home-card").style.display = "block";
+      document.getElementById("passcode-input").value = "";
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.getElementById("passcode-input").addEventListener("keypress", function(e) {
+      if (e.key === "Enter") unlockPersonalLetter();
+    });
+  </script>
+
+</body>
+</html>
+      
