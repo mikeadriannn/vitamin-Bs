@@ -12,12 +12,14 @@
 
   <style>
     :root {
-      /* Translucent card background so the photo remains visible */
-      --card-bg: rgba(15, 23, 42, 0.72);
-      --card-border: rgba(255, 255, 255, 0.22);
+      /* Made the card much more transparent so the image shows clearly behind it */
+      --card-bg: rgba(15, 23, 42, 0.40);
+      --card-border: rgba(255, 255, 255, 0.28);
       --accent: #38bdf8;
       --text: #ffffff;
-      --muted: #cbd5e1;
+      --muted: #e2e8f0;
+    }
+
     }
 
     * {
@@ -49,12 +51,12 @@
       max-width: 580px;
     }
 
-    /* Glassmorphism Card */
+    /* Glassmorphism Card with high see-through visibility */
     .card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(4px);          /* Lowered blur so photo shapes are visible */
+      -webkit-backdrop-filter: blur(4px);
       border-radius: 24px;
       padding: 2.25rem 1.75rem;
       box-shadow: 0 16px 35px rgba(0, 0, 0, 0.35);
@@ -101,12 +103,14 @@
       margin-bottom: 1.25rem;
     }
 
-    .letter-body {
-      color: #f1f5f9;
+      .letter-body {
+      color: #ffffff;
       font-size: 1rem;
       line-height: 1.85;
       white-space: pre-line;
       margin-bottom: 1.75rem;
+      /* Subtle drop-shadow keeps letters readable over photo details */
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
     }
 
     .sign-off {
